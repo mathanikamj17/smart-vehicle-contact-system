@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block body %}
+<h1>Admin</h1>
+{% if rows is none %}
+<form method="post" class="card"><label for="pw">Password</label><input id="pw" name="password" type="password" required><button>Log in</button></form>
+{% else %}{% for r in rows %}
+<div class="card"><span class="tag {{r.status}}">{{r.status}}</span> <span class="plate">{{r.vehicle}}</span> <small>#{{r.id}} · {{r.created}}</small>
+<p><b>{{r.location}}</b><br>{{r.problem}}<br><small>Owner: {{ 'alerted' if r.owner_id else 'not registered' }}{% if r.response %} · Reply: {{r.response}}{% endif %}</small></p>
+{% if r.status=='Pending' %}<form method="post" action="/admin/resolve/{{r.id}}"><button>Mark resolved</button></form>{% endif %}</div>
+{% else %}<p>No reports yet.</p>{% endfor %}{% endif %}
+{% endblock %}

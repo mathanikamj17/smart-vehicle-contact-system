@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block body %}
+<h1>Report a blocking vehicle</h1>
+{% if result %}
+<div class="msg {{ 'ok' if result.found else 'err' }}">
+{% if result.found %}Owner of <span class="plate">{{result.plate}}</span> has been alerted. Report #{{result.id}} is Pending.
+{% else %}<span class="plate">{{result.plate}}</span> is not registered, so we can't alert the owner. Your report #{{result.id}} is saved.{% endif %}</div>
+{% endif %}
+<form method="post" class="card">
+<label for="v">Vehicle number</label><input id="v" name="vehicle" placeholder="TN38AB1234" required>
+<label for="l">Where is it?</label><input id="l" name="location" placeholder="Street, landmark" required>
+<label for="d">What is the problem?</label><textarea id="d" name="problem" rows="3" placeholder="Parked across the gate" required></textarea>
+<button>Send report</button></form>
+{% endblock %}

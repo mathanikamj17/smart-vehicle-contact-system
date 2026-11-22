@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block body %}
+<h1>My alerts</h1>
+<form method="post" class="card">
+<label for="v">Vehicle number</label><input id="v" name="vehicle" required>
+<label for="p">Registered mobile number</label><input id="p" name="phone" inputmode="numeric" maxlength="10" required>
+<button>Show my alerts</button></form>
+{% if rows is not none %}{% for r in rows %}
+<div class="card"><span class="tag {{r.status}}">{{r.status}}</span> <small>{{r.created}}</small>
+<p><b>{{r.location}}</b><br>{{r.problem}}</p>
+{% if r.response %}<p><small>Your reply: {{r.response}}</small></p>
+{% else %}<form method="post" action="/owner/respond/{{r.id}}" class="row">
+<input name="response" placeholder="e.g. Coming in 5 minutes" required><button>Reply</button></form>{% endif %}</div>
+{% else %}<p>No alerts. Nobody has reported your vehicle.</p>{% endfor %}{% endif %}
+{% endblock %}

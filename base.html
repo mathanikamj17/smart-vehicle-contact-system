@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}Move My Vehicle{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body>
+<header><nav><b>Move My Vehicle</b>
+<a href="/">Home</a><a href="/report">Report</a><a href="/register">Register</a><a href="/owner">My alerts</a><a href="/admin">Admin</a></nav></header>
+<main>{% with m = get_flashed_messages(with_categories=true) %}{% for c,t in m %}<div class="msg {{c}}">{{t}}</div>{% endfor %}{% endwith %}
+{% block body %}{% endblock %}</main></body></html>

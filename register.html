@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block body %}
+<h1>Register your vehicle</h1>
+<form method="post" class="card">
+<label for="n">Your name</label><input id="n" name="name" required>
+<label for="v">Vehicle number</label><input id="v" name="vehicle" placeholder="TN38AB1234" required>
+<label for="p">Mobile number</label><input id="p" name="phone" inputmode="numeric" maxlength="10" required>
+<label class="check"><input type="checkbox" name="consent"> I agree to receive alerts when my vehicle is reported. My number stays private.</label>
+<button>Register vehicle</button></form>
+{% endblock %}
